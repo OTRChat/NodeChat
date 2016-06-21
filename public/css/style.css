@@ -30,16 +30,16 @@ form button {
   padding: 10px;
 }
 
-#messages {
+#chat_log {
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
 
-#messages li {
+#chat_log li {
   padding: 5px 10px;
 }
 
-#messages li:nth-child(odd) {
+#chat_log li:nth-child(odd) {
   background: #eee;
 }
