@@ -43,3 +43,29 @@ form button {
 #chat_log li:nth-child(odd) {
   background: #eee;
 }
+
+.blocker {
+  background-color: #000;
+  opacity: 0.3;
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+#username_input {
+  align-content: center;
+  vertical-align: center;
+}
+
+.message_time {
+  float: right;
+  color: slategray;
+}
+
+.image_message {
+  width: 300px;
+  height: auto;
+}

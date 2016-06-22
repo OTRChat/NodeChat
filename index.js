@@ -8,7 +8,7 @@ var io = require('socket.io')(http);
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', function(req, res){
-  res.sendFile(__dirname + '/index.html');
+  res.sendFile(__dirname + 'public/index.html');
 });
 
 io.on('connection', function(socket){
@@ -19,7 +19,7 @@ io.on('connection', function(socket){
   });
 
   socket.on('disconnect', function(){
-    console.log(socket.name + ' has disconnected.' + socket.id);
+    console.log(socket.id.name + ' has disconnected.' + socket.id);
   });
 
 
