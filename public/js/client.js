@@ -35,6 +35,10 @@ $('form').submit(function() {
   return false;
 });
 
+socket.on('disconnect', function(){
+  alert('You have been disconnected from the server.');
+});
+
 socket.on('chat message', function(message) {
   $('#chat_log').append($('<li>').text(message));
   Push.create(message, {
