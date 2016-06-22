@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.10.2",
+    "push.js": "0.0.9",
     "socket.io": "^1.4.6"
   }
 }

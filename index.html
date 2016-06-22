@@ -12,7 +12,8 @@
     </form>
   </body>
   <script src="/socket.io/socket.io.js"></script>
-  <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/push.js/0.0.9/push.min.js"></script>
+  <script src="//code.jquery.com/jquery-2.2.0.min.js"></script>
   <script>
 
     $(document).ready(function(){
@@ -23,12 +24,14 @@
 
     $('form').submit(function(){
       socket.emit('chat message', $('#message_text').val());
+      $('#chat_log').append($('<li>').text($('#message_text').val()));
       $('#message_text').val('');
       return false;
     });
 
     socket.on('chat message', function(message){
       $('#chat_log').append($('<li>').text(message));
+      Push.create(message, { timeout: 5000});
       $('#chatAudio')[0].play();
     });
 
