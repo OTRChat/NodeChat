@@ -12,8 +12,13 @@
     </form>
   </body>
   <script src="/socket.io/socket.io.js"></script>
-  <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+  <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
   <script>
+
+    $(document).ready(function(){
+      $("<audio id='chatAudio'><source src='sound/ping.mp3' type='audio/mpeg'></audio>").appendTo('body');
+    });
+
     var socket = io();
 
     $('form').submit(function(){
@@ -24,6 +29,7 @@
 
     socket.on('chat message', function(message){
       $('#chat_log').append($('<li>').text(message));
+      $('#chatAudio')[0].play();
     });
 
   </script>
