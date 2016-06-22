@@ -19,18 +19,18 @@ $(document).ready(function() {
 
 var socket = io();
 
-function parse_image(){
+function parse_image(input_string){
 
-  if($('#message_text').val().substr($('#message_text').val().length - 3) === "jpg" || $('#message_text').val().substr($('#message_text').val().length - 3) === "gif"){
-    return "<img class='image_message' src='" + $('#message_text').val() + "' />";
+  if(input_string.substr(input_string.length - 3) === "jpg" || input_string.substr(input_string.length - 3) === "gif"){
+    return "<img class='image_message' src='" + input_string + "' />";
   }
 
-  return $('#message_text').val();
+  return input_string;
 }
 
 $('form').submit(function() {
   socket.emit('chat message', $('#message_text').val());
-  $('#chat_log').append($('<li>').html(parse_image() + "<span class='message_time'>" + new Date().toLocaleTimeString() + "</span>"));
+  $('#chat_log').append($('<li>').html(parse_image($('#message_text').val()) + "<span class='message_time'>" + new Date().toLocaleTimeString() + "</span>"));
   $('#message_text').val('');
   return false;
 });
@@ -40,7 +40,7 @@ socket.on('disconnect', function(){
 });
 
 socket.on('chat message', function(message) {
-  $('#chat_log').append($('<li>').text(message));
+  $('#chat_log').append($('<li>').html(parse_image(message) + "<span class='message_time'>" + new Date().toLocaleTimeString() + "</span>"));
   Push.create(message, {
     timeout: 5000
   });
