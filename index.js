@@ -14,15 +14,32 @@ app.get('/', function(req, res){
 io.on('connection', function(socket){
   console.log('A user has connected: ' + socket.id);
 
-  socket.on('chat message', function(message){
-    socket.broadcast.emit('chat message', message)
+  socket.on('new message', function(message){
+    socket.broadcast.emit('new message', {
+      username: socket.username,
+      message: message
+    });
   });
 
   socket.on('disconnect', function(){
     console.log(socket.id.name + ' has disconnected.' + socket.id);
   });
 
+  socket.on('typing', function(){
+    socket.broadcast.emit('typing', {
+      username: socket.username
+    });
+  });
 
+  socket.on('stop typing', function(){
+    socket.broadcast.emit('stop typing', {
+      username: socket.username
+    });
+  });
+
+  socket.on('add user', function(username){
+    socket.username = username;
+  })
 });
 
 http.listen(port, function(){

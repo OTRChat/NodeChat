@@ -1,48 +1,154 @@
-var session_user_name;
-
-function prompt_user_for_name(){
-  $("<div class='blocker'> <label for='username_input'></label> <input id='username_input' /> </div>").appendTo('body');
-}
+var socket = io();
+var $chatInput = $('#message_text');
+var $chatLog = $('#chat_log');
+var $loginPage = $('.loginPage');
+var $chatPage = $('.chatPage');
+var $usernameInput = $('#usernameInput');
+var username;
+var connected = false;
+var typing = false;
+var typingTimerLength = 500 // ms
+var lastTypingTime;
 
 $(document).ready(function() {
-  // prompt_user_for_name();
   $("<audio id='chatAudio'><source src='sound/ping.mp3' type='audio/mpeg'></audio>").appendTo('body');
-  $("#message_text").focus();
+  $chatInput.focus();
 
-  $('#chat_log').bind('DOMSubtreeModified', function(){
-    $('#chat_log').animate({
-      scrollTop: $('#chat_log')[0].scrollHeight
+  $chatLog.bind('DOMSubtreeModified', function(){
+    $chatLog.animate({
+      scrollTop: $chatLog[0].scrollHeight
     });
   });
-
 });
 
-var socket = io();
-
-function parse_image(input_string){
-
-  if(input_string.substr(input_string.length - 3) === "jpg" || input_string.substr(input_string.length - 3) === "gif"){
-    return "<img class='image_message' src='" + input_string + "' />";
+$(window).keydown(function(ev){
+  if(ev.which === 13){
+    if(username){
+      sendMessage();
+      socket.emit('stop typing');
+      typing = false;
+    } else {
+      setUsername();
+    }
   }
+});
 
-  return input_string;
+function sendMessage(){
+  var messageText = $chatInput.val();
+
+  if(messageText && connected){
+    $chatInput.val('');
+
+    addChatMessage({
+      username: username,
+      message: messageText
+    });
+
+    socket.emit('new message', messageText);
+  }
 }
 
-$('form').submit(function() {
-  socket.emit('chat message', $('#message_text').val());
-  $('#chat_log').append($('<li>').html(parse_image($('#message_text').val()) + "<span class='message_time'>" + new Date().toLocaleTimeString() + "</span>"));
-  $('#message_text').val('');
-  return false;
+function setUsername(){
+
+  username = $usernameInput.val();
+
+  if(username){
+    $loginPage.hide();
+    $chatPage.show();
+
+    socket.emit('add user', username);
+
+    connected = true;
+  }
+}
+
+function parseMessageText(inputString){
+  // TODO: Abstract this to another method to detect if it only contains an image url.
+  if(inputString.substr(inputString.length - 3) === "jpg" || inputString.substr(inputString.length - 3) === "gif"){
+    return "<img class='image_message' src='" + inputString + "' />";
+  }
+
+  return inputString;
+}
+
+function addChatMessage(data){
+  var $usernameSpan = $('<span class="username" />')
+                      .text(data.username);
+
+  var $messageBody = $('<span class="messageBody" />')
+                    .text(parseMessageText(data.message));
+
+  var $messageTime = $('<span class="messageTime" />')
+                    .html(new Date().toLocaleTimeString());
+
+  var $messageContainer = $('<li class="message" />')
+                          .data('username', data.username)
+                          .append($usernameSpan, $messageBody, $messageTime);
+
+  $chatLog.append($messageContainer);
+  $chatLog[0].scrollTop = $chatLog[0].scrollHeight;
+}
+
+function updateTyping(){
+  if(connected){
+    if(!typing){
+      typing = false;
+      socket.emit('typing');
+    }
+  }
+  lastTypingTime = new Date().getTime();
+
+  setTimeout(function(){
+    var typingTimer = new Date().getTime();
+    var timeDiff = typingTimer - lastTypingTime;
+
+    if(timeDiff >= typingTimerLength && typing){
+      socket.emit('stop typing');
+      typing = false;
+    }
+  }, typingTimerLength);
+}
+
+function addChatTyping(data){
+  data.typing = true;
+  data.message = 'is typing...';
+  addChatMessage(data)
+}
+
+function getTypingMessages(data){
+  return $('.typingMessages').filter(function(x){
+    return $(this).data('username') === data.username;
+  });
+}
+
+function removeChatTyping(data){
+  getTypingMessages(data).remove();
+}
+
+function notifyUser(){
+  Push.create(message, {
+    timeout: 5000
+  });
+  $('#chatAudio')[0].play();
+}
+
+socket.on('login', function(data){
+  connected = true;
 });
 
 socket.on('disconnect', function(){
   alert('You have been disconnected from the server.');
 });
 
-socket.on('chat message', function(message) {
-  $('#chat_log').append($('<li>').html(parse_image(message) + "<span class='message_time'>" + new Date().toLocaleTimeString() + "</span>"));
-  Push.create(message, {
-    timeout: 5000
-  });
-  $('#chatAudio')[0].play();
+socket.on('new message', function(message) {
+  addChatMessage(message);
+  notifyUser();
+});
+
+socket.on('typing', function(data){
+  addChatTyping(data);
+});
+
+socket.on('stop typing', function(data){
+  removeChatTyping(data);
 });

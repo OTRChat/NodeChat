@@ -4,12 +4,21 @@
     <title>Chat | chat.joshghent.com</title>
     <meta charset="UTF-8">
     <link href="css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css">
   </head>
   <body>
-    <ul id="chat_log"></ul>
-    <form action="" id="chat">
-      <input id="message_text" /><button>Send</button>
-    </form>
+    <ul class="pages">
+      <li class="chatPage">
+        <ul id="chat_log"></ul>
+        <input id="message_text" placeholder="Send a message"/><button><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+      </li>
+      <li class="loginPage">
+        <div class="loginForm">
+          <h5>Please enter a Nickname</h5>
+          <input id="usernameInput" maxlength="20"/>
+        </div>
+      </li>
+    </ul>
   </body>
   <script src="/socket.io/socket.io.js"></script>
   <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/push.js/0.0.9/push.min.js"></script>

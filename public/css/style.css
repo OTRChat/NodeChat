@@ -19,12 +19,12 @@ form {
 form input {
   border: 0;
   padding: 10px;
-  width: 90%;
+  width: 97%;
   margin-right: .5%;
 }
 
 form button {
-  width: 9%;
+  width: 2%;
   background: rgb(130, 224, 255);
   border: none;
   padding: 10px;
@@ -68,4 +68,11 @@ form button {
 .image_message {
   width: 300px;
   height: auto;
+}
+
+.pages {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
