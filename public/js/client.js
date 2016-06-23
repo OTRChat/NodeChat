@@ -11,6 +11,7 @@ var typingTimerLength = 500 // ms
 var lastTypingTime;
 
 $(document).ready(function() {
+  $chatPage.hide();
   $("<audio id='chatAudio'><source src='sound/ping.mp3' type='audio/mpeg'></audio>").appendTo('body');
   $chatInput.focus();
 
@@ -125,8 +126,9 @@ function removeChatTyping(data){
   getTypingMessages(data).remove();
 }
 
-function notifyUser(){
-  Push.create(message, {
+function notifyUser(message){
+  Push.create(message.username, {
+    body: message.message,
     timeout: 5000
   });
   $('#chatAudio')[0].play();
@@ -142,7 +144,7 @@ socket.on('disconnect', function(){
 
 socket.on('new message', function(message) {
   addChatMessage(message);
-  notifyUser();
+  notifyUser(message);
 });
 
 socket.on('typing', function(data){

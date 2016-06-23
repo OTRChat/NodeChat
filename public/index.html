@@ -8,13 +8,15 @@
   </head>
   <body>
     <ul class="pages">
-      <li class="chatPage">
+      <li class="chatPage page">
         <ul id="chat_log"></ul>
-        <input id="message_text" placeholder="Send a message"/><button><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+        <div class="inputContainer">
+          <input id="message_text" placeholder="Send a message"/>
+        </div>
       </li>
-      <li class="loginPage">
+      <li class="loginPage page">
         <div class="loginForm">
-          <h5>Please enter a Nickname</h5>
+          <h5 class="title">Please enter a Nickname</h5>
           <input id="usernameInput" maxlength="20"/>
         </div>
       </li>
