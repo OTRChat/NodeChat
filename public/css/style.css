@@ -60,9 +60,19 @@ body {
   margin-top: 10px;
 }
 
-.message_time {
+.messageTime {
   float: right;
   color: slategray;
+}
+
+.username {
+  font-weight: bold;
+  margin-right: 2px;
+}
+
+
+.username:after{
+  content: ':';
 }
 
 .image_message {
