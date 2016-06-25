@@ -12,7 +12,16 @@ var typingTimerLength = 500 // ms
 var lastTypingTime;
 
 $(document).ready(function() {
-  $chatPage.hide();
+  var previousUsername = getUsernameFromStorage();
+
+  if(previousUsername !== null){
+    $loginPage.hide();
+    username = previousUsername;
+    userJoin(previousUsername);
+    connected = true;
+  } else {
+    $chatPage.hide();
+  }
   $("<audio id='chatAudio'><source src='sound/ping.mp3' type='audio/mpeg'></audio>").appendTo('body');
   $chatInput.focus();
 
@@ -35,6 +44,14 @@ $(window).keydown(function(ev){
     }
   }
 });
+
+function userJoin(username){
+  socket.emit('user join', username);
+}
+
+function getUsernameFromStorage(){
+  return localStorage.getItem('NodeChatUsername');
+}
 
 function sendMessage(){
   var messageText = $chatInput.val();
@@ -71,6 +88,7 @@ function setUsername(){
     greetUser(username);
     socket.emit('add user', username);
     $currentInput = $chatInput.focus();
+    localStorage.setItem('NodeChatUsername', username);
     connected = true;
   }
 }

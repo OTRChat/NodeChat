@@ -39,6 +39,11 @@ io.on('connection', function(socket){
 
   socket.on('add user', function(username){
     socket.username = username;
+  });
+
+  socket.on('user join', function(username){
+    socket.username = username;
+    socket.broadcast.emit('user join', { username: socket.username });
   })
 });
 
