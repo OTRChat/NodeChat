@@ -4,6 +4,7 @@ var $chatLog = $('#chat_log');
 var $loginPage = $('.loginPage');
 var $chatPage = $('.chatPage');
 var $usernameInput = $('#usernameInput');
+var $currentInput = $usernameInput.focus();
 var username;
 var connected = false;
 var typing = false;
@@ -23,6 +24,7 @@ $(document).ready(function() {
 });
 
 $(window).keydown(function(ev){
+  $currentInput.focus();
   if(ev.which === 13){
     if(username){
       sendMessage();
@@ -68,7 +70,7 @@ function setUsername(){
     $chatPage.show();
     greetUser(username);
     socket.emit('add user', username);
-
+    $currentInput = $chatInput.focus();
     connected = true;
   }
 }
