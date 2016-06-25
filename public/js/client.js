@@ -73,21 +73,50 @@ function setUsername(){
   }
 }
 
-function parseMessageText(inputString){
-  // TODO: Abstract this to another method to detect if it only contains an image url.
-  if(inputString.substr(inputString.length - 3) === "jpg" || inputString.substr(inputString.length - 3) === "gif"){
-    return "<img class='image_message' src='" + inputString + "' />";
+function getFileType(inputString){
+  return inputString.split(".").pop();
+}
+
+function imageFile(filetype){
+  var imageFormats = {
+    "jpg"  : 0,
+    "gif"  : 0,
+    "jpeg" : 0
+  };
+
+  for(var files in imageFormats){
+    if(imageFormats.hasOwnProperty(filetype) === true){
+      return true;
+    }
   }
 
-  return inputString;
+  return false;
+}
+
+function imageLink(inputString){
+  inputString = inputString.trim();
+
+  var filetype = getFileType(inputString);
+
+  if(inputString.substring(0, 4) === "http" && imageFile(filetype) === true){
+    return "<img class='image_message' src='" + inputString + "' />";
+  }
+}
+
+function parseMessageText(inputString){
+
+  if(imageFile(getFileType(inputString)) === true){
+    return imageLink(inputString);
+  }
+
+  return $('<span class="messageBody" />').text(inputString);
 }
 
 function addChatMessage(data){
   var $usernameSpan = $('<span class="username" />')
                       .text(data.username);
 
-  var $messageBody = $('<span class="messageBody" />')
-                    .text(parseMessageText(data.message));
+  var $messageBody = parseMessageText(data.message);
 
   var $messageTime = $('<span class="messageTime" />')
                     .html(new Date().toLocaleTimeString());
