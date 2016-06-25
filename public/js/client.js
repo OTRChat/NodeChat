@@ -213,3 +213,7 @@ socket.on('typing', function(data){
 socket.on('stop typing', function(data){
   removeChatTyping(data);
 });
+
+socket.on('user join', function(data){
+  
+});

@@ -22,7 +22,7 @@ io.on('connection', function(socket){
   });
 
   socket.on('disconnect', function(){
-    console.log(socket.id.name + ' has disconnected.' + socket.id);
+    console.log('User: ' + socket.username + ' has disconnected.' + socket.id);
   });
 
   socket.on('typing', function(){
