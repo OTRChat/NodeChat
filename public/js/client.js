@@ -49,6 +49,13 @@ function sendMessage(){
   }
 }
 
+function greetUser(username){
+  var $userGreeting = $('<span class="messageBody" />')
+                      .text('Hello there ' + username + '!');
+
+  $chatLog.append($userGreeting);
+}
+
 function setUsername(){
 
   username = $usernameInput.val();
@@ -56,7 +63,7 @@ function setUsername(){
   if(username){
     $loginPage.hide();
     $chatPage.show();
-
+    greetUser(username);
     socket.emit('add user', username);
 
     connected = true;
