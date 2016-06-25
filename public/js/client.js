@@ -53,7 +53,10 @@ function greetUser(username){
   var $userGreeting = $('<span class="messageBody" />')
                       .text('Hello there ' + username + '!');
 
-  $chatLog.append($userGreeting);
+  var $greetingContainer = $('<li class="message" />')
+                           .append($userGreeting);
+
+  $chatLog.append($greetingContainer);
 }
 
 function setUsername(){
