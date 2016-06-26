@@ -61,7 +61,8 @@ function sendMessage(){
 
     addChatMessage({
       username: username,
-      message: messageText
+      message: messageText,
+      messageClass: "from-me"
     });
 
     socket.emit('new message', messageText);
@@ -133,17 +134,15 @@ function parseMessageText(inputString){
 }
 
 function addChatMessage(data){
-  var $usernameSpan = $('<span class="username" />')
-                      .text(data.username);
 
   var $messageBody = parseMessageText(data.message);
 
   var $messageTime = $('<span class="messageTime" />')
-                    .html(new Date().toLocaleTimeString());
+                    .html(new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}));
 
-  var $messageContainer = $('<li class="message" />')
+  var $messageContainer = $('<li class="message ' + data.messageClass + '" />')
                           .data('username', data.username)
-                          .append($usernameSpan, $messageBody, $messageTime);
+                          .append($messageBody, $messageTime);
 
   $chatLog.append($messageContainer);
   $chatLog[0].scrollTop = $chatLog[0].scrollHeight;
@@ -215,5 +214,5 @@ socket.on('stop typing', function(data){
 });
 
 socket.on('user join', function(data){
-  
+
 });

@@ -17,7 +17,8 @@ io.on('connection', function(socket){
   socket.on('new message', function(message){
     socket.broadcast.emit('new message', {
       username: socket.username,
-      message: message
+      message: message,
+      messageClass: "from-them"
     });
   });
 
