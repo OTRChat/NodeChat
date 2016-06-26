@@ -5,10 +5,6 @@
   font-family: 'Lucida Grande', Tahoma, Verdana, Arial, sans-serif;
 }
 
-body {
-  font: 13px Helvetica, Arial;
-}
-
 .message {
   clear: both;
   margin-bottom: 10px;
@@ -61,13 +57,21 @@ body {
 
 .messageTime {
   float: right;
-  color: white;
   font-size: 11px;
   display: table-cell;
   bottom: 0;
   position: absolute;
   right: 0;
-  margin-right: 5px;
+  margin-right: 20px;
+  opacity: 0.5;
+}
+
+.whiteText {
+  color: white;
+}
+
+.blackText {
+  color: black;
 }
 
 .messageBody {
@@ -128,18 +132,18 @@ body {
 
 .from-me {
   position: relative;
-  background: deepskyblue;
+  background: #0089FF;
   color: white;
   float: right;
   padding: 15px 25px;
-  border-radius: 5px;
+  border-radius: 25px;
   margin-right: 10px;
   padding-left: 10px;
 }
 
 .from-me:after {
-  left: 99%;
-  top: 4%;
+  left: 97%;
+  top: 15%;
   border: solid transparent;
   content: " ";
   height: 0;
@@ -147,11 +151,30 @@ body {
   position: absolute;
   pointer-events: none;
   border-color: rgba(0, 187, 255, 0);
-  border-left-color: deepskyblue;
+  border-left-color: #0089FF;
   border-width: 10px;
   margin-top: 7px;
 }
 
 .from-them {
+  position: relative;
+  background: #D7D7D7;
+  float: left;
+  padding: 15px 25px;
+  border-radius: 25px;
+  margin-left: 10px;
+}
 
+.from-them:after {
+  right: 98%;
+  top: 15%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  border-right-color: #D7D7D7;
+  border-width: 10px;
+  margin-top: 7px;
 }

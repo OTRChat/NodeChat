@@ -18,7 +18,7 @@ io.on('connection', function(socket){
     socket.broadcast.emit('new message', {
       username: socket.username,
       message: message,
-      messageClass: "from-them"
+      messageClass: "from-them blackText"
     });
   });
 

@@ -62,7 +62,7 @@ function sendMessage(){
     addChatMessage({
       username: username,
       message: messageText,
-      messageClass: "from-me"
+      messageClass: "from-me whiteText"
     });
 
     socket.emit('new message', messageText);
