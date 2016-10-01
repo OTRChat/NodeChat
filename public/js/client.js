@@ -151,31 +151,48 @@ function setUsername(){
   }
 }
 
+// Gets the file type from a string 
+// Example in/out : "thing.jpg" => "jpg"
 function getFileType(inputString){
   return inputString.split(".").pop();
 }
 
+// Checks if a filetype is in a list of approved file types
+// The list is of image files
+// Will return true if it's an image file format and false if not.
 function imageFile(filetype){
+  // Create an object that stores the image file formats
   var imageFormats = {
     "jpg"  : 0,
     "gif"  : 0,
     "jpeg" : 0
   };
 
+  // Iterate through the list of image file formats
   for(var files in imageFormats){
+    // Check if the file type passed to the method is in our list of approved image file formats
     if(imageFormats.hasOwnProperty(filetype) === true){
       return true;
     }
   }
-
+ 
+  // If it's not an approved file format then return false.
   return false;
 }
 
+// This method is responsible for creating an image tag
+// It is called if the user posts a link to an image
+// This means that the links get parsed into images that are displayed on the page
 function imageLink(inputString){
+  
+  // Trim the input string
   inputString = inputString.trim();
 
+  // Get the file type from the input
   var filetype = getFileType(inputString);
-
+  
+  // Build up an image tag and return it
+  // Set the source of the img tag
   if(inputString.substring(0, 4) === "http" && imageFile(filetype) === true){
     return "<img class='image_message' src='" + inputString + "' />";
   }
@@ -259,7 +276,12 @@ function removeChatTyping(data){
   getTypingMessages(data).remove();
 }
 
+// Method to notify the user
+// It creates a push notification and plays the alert message sound
+// It is triggered when the user receives a message
 function notifyUser(message){
+  
+  // Create a push notification
   Push.create(message.username, {
     body: message.message,
     timeout: 5000,
@@ -268,6 +290,8 @@ function notifyUser(message){
       this.close();
     }
   });
+
+  // Trigger the audio file sound
   $('#chatAudio')[0].play();
 }
 
