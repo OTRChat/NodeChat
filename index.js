@@ -4,6 +4,7 @@ var http = require('http').Server(app);
 var port = 9876;
 var path = require('path');
 var io = require('socket.io')(http);
+var shortid = require('shortid');
 
 app.use(express.static(path.join(__dirname, 'public')));
 

@@ -145,7 +145,9 @@ function addChatMessage(data){
                           .append($messageBody, $messageTime);
 
   $chatLog.append($messageContainer);
-  $chatLog[0].scrollTop = $chatLog[0].scrollHeight;
+  $chatLog.animate({
+      scrollTop: $chatLog[0].scrollHeight
+    });
 }
 
 function updateTyping(){
