@@ -12,7 +12,8 @@
     "socket.io": "^1.4.6"
   },
   "scripts": {
-    "start": "gulp && node index.js"
+    "start": "node index.js",
+    "dev" : "gulp && node index.js"
   },
   "repository": {
     "type": "git",
