@@ -1,3 +1,14 @@
-# NodeChat
+# NodeChat :speech_balloon:
 
-Basic chat application using NodeJS and socket.io.
+A group chat application written in Node and SocketIO.
+
+See it live [here](https://chat.joshghent.com).
+
+### Quick Start Guide
+```bash
+# Install the dependancies
+npm install
+
+# Run the server!
+npm start
+```

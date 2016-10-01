@@ -189,7 +189,11 @@ function removeChatTyping(data){
 function notifyUser(message){
   Push.create(message.username, {
     body: message.message,
-    timeout: 5000
+    timeout: 5000,
+    onClick: function () {
+      window.focus();
+      this.close();
+    }
   });
   $('#chatAudio')[0].play();
 }
