@@ -1,7 +1,7 @@
 {
   "name": "nodechat",
   "version": "1.0.0",
-  "description": "A basic nodejs chat with socketio",
+  "description": "Group chat with SocketIO",
   "main": "index.js",
   "author": "Josh Ghent",
   "license": "MIT",
@@ -10,6 +10,9 @@
     "push.js": "0.0.9",
     "shortid": "2.2.6",
     "socket.io": "^1.4.6"
+  },
+  "scripts": {
+    "start": "gulp && node index.js"
   },
   "repository": {
     "type": "git",
