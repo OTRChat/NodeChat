@@ -20,6 +20,8 @@
   padding: 10px;
   width: 100%;
   margin-right: 0.5%; }
+  #message_text:focus {
+    outline: none; }
 
 #chat_log {
   list-style-type: none;

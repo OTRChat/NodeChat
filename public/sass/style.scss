@@ -23,6 +23,9 @@
   padding: 10px;
   width: 100%;
   margin-right: 0.5%;
+  &:focus {
+    outline: none;
+  }
 }
 
 #chat_log {
