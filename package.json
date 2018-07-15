@@ -7,9 +7,9 @@
   "license": "MIT",
   "dependencies": {
     "express": "^4.10.2",
-    "push.js": "0.0.11",
-    "shortid": "2.2.6",
-    "socket.io": "^1.4.6"
+    "push.js": "1.0.5",
+    "shortid": "2.2.12",
+    "socket.io": "^2.1.1"
   },
   "scripts": {
     "start": "node index.js",
@@ -21,6 +21,6 @@
   },
   "devDependencies": {
     "gulp": "^3.9.1",
-    "gulp-sass": "^2.3.2"
+    "gulp-sass": "^4.0.1"
   }
 }
