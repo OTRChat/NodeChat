@@ -1,2 +1,4 @@
 /node_modules/*
 cert/
+/public/image/favicon/*
+faviconData.json

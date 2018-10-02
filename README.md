@@ -6,9 +6,18 @@ See it live [here](https://chat.joshghent.com).
 
 ### Quick Start Guide
 ```bash
-# Install the dependancies
+# Install the dependencies
 npm install
 
 # Run the server!
 npm start
+```
+
+### Build Options
+```bash
+# Compile Sass
+gulp sass
+
+# Update the favicon (currently referencing public/image/logo-favicon.svg)
+gulp favicon
 ```
