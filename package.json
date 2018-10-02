@@ -13,7 +13,7 @@
   },
   "scripts": {
     "start": "node index.js",
-    "dev" : "gulp && node index.js"
+    "dev": "gulp && node index.js"
   },
   "repository": {
     "type": "git",
@@ -21,6 +21,7 @@
   },
   "devDependencies": {
     "gulp": "^3.9.1",
+    "gulp-real-favicon": "^0.3.0",
     "gulp-sass": "^2.3.2"
   }
 }
