@@ -1,0 +1,170 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Lucida Grande', Tahoma, Verdana, Arial, sans-serif;
+}
+.message {
+  clear: both;
+  margin-bottom: 10px;
+}
+
+.inputContainer {
+  background: #d2d2d2;
+  padding: 3px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+#message_text {
+  border: 0;
+  padding: 10px;
+  width: 100%;
+  margin-right: 0.5%;
+  &:focus {
+    outline: none;
+  }
+}
+
+#chat_log {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  height: 100%;
+  padding-bottom: 50px;
+}
+
+#usernameInput {
+  background-color: transparent;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #fff;
+  text-align: center;
+  width: 300px;
+  color: #fff;
+  font-size: 20px;
+  margin-top: 10px;
+}
+
+.messageTime {
+  float: right;
+  font-size: 11px;
+  display: table-cell;
+  bottom: 0;
+  position: absolute;
+  right: 0;
+  margin-right: 20px;
+  opacity: 0.5;
+}
+
+.whiteText {
+  color: white;
+}
+
+.blackText {
+  color: black;
+}
+
+.messageBody {
+  margin-right: 25px;
+}
+
+.username {
+  font-weight: bold;
+  margin-right: 2px;
+  &:after {
+    content: ':';
+  }
+}
+
+.image_message {
+  width: 300px;
+  height: auto;
+}
+
+.pages {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+}
+
+.loginPage {
+  background-color: #000;
+  opacity: 0.7;
+}
+
+.loginForm {
+  position: absolute;
+  height: 100px;
+  width: 100%;
+  margin-top: -100px;
+  text-align: center;
+  top: 50%;
+}
+
+.title {
+  color: #fff;
+  font-size: 30px;
+}
+
+.page {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+}
+
+.chatPage {
+  background-image: url('/image/loops.png');
+  background-repeat: repeat;
+}
+
+.from-me {
+  position: relative;
+  background: #0089FF;
+  color: white;
+  float: right;
+  padding: 15px 25px;
+  border-radius: 25px;
+  margin-right: 10px;
+  padding-left: 10px;
+  &:after {
+    left: 97%;
+    top: 15%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-color: rgba(0, 187, 255, 0);
+    border-left-color: #0089FF;
+    border-width: 10px;
+    margin-top: 7px;
+  }
+}
+
+.from-them {
+  position: relative;
+  background: #D7D7D7;
+  float: left;
+  padding: 15px 25px;
+  border-radius: 25px;
+  margin-left: 10px;
+  &:after {
+    right: 98%;
+    top: 15%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-right-color: #D7D7D7;
+    border-width: 10px;
+    margin-top: 7px;
+  }
+}

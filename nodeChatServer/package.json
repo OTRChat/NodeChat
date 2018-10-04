@@ -1,0 +1,26 @@
+{
+  "name": "nodechat",
+  "version": "1.0.0",
+  "description": "Group chat with SocketIO",
+  "main": "index.js",
+  "author": "Josh Ghent",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.10.2",
+    "push.js": "0.0.11",
+    "shortid": "2.2.6",
+    "socket.io": "^1.4.6"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "dev" : "gulp && node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:joshghent/NodeChat.git"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-sass": "^2.3.2"
+  }
+}
