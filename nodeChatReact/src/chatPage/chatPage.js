@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './chatPage.css';
+import * as Push from "push.js"
 
 class ChatPage extends Component {
 
@@ -22,7 +23,9 @@ class ChatPage extends Component {
             this.greetUser();
             this.state.socket.on('new message', (message) => {
                 this.addChatMessage(message);
-                //notifyUser(message);
+                if(this.state.username !== message.username){
+                    this.notifyUser(message);
+                }
             });
         }
 
@@ -143,6 +146,20 @@ class ChatPage extends Component {
     scrollToBottom() {
         this.el.scrollIntoView({ behavior: 'smooth', inline: "nearest"});
     }
+
+    notifyUser(message){
+  
+        // Create a push notification
+        Push.create(message.username, {
+          body: message.message,
+          timeout: 5000,
+          onClick: function () {
+            window.focus();
+            this.close();
+          }
+        });
+    }
+
     render() {
         return (
             <div>
