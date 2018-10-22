@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './chatPage.css';
+import * as Push from "push.js"
+import mp3_file from '../app/assets/sound/ping.mp3';
 
 class ChatPage extends Component {
 
@@ -22,7 +24,9 @@ class ChatPage extends Component {
             this.greetUser();
             this.state.socket.on('new message', (message) => {
                 this.addChatMessage(message);
-                //notifyUser(message);
+                if(this.state.username !== message.username){
+                    this.notifyUser(message);
+                }
             });
         }
 
@@ -143,9 +147,25 @@ class ChatPage extends Component {
     scrollToBottom() {
         this.el.scrollIntoView({ behavior: 'smooth', inline: "nearest"});
     }
+
+    notifyUser(message){
+  
+        // Create a push notification
+        Push.create(message.username, {
+          body: message.message,
+          timeout: 5000,
+          onClick: function () {
+            window.focus();
+            this.close();
+          }
+        });
+        this.Sound.play();
+    }
+
     render() {
         return (
             <div>
+               <audio src={mp3_file} ref={Sound => { this.Sound = Sound; }}/>
                 <ul className="pages">
                     <li className="chatPage page">
                         <ul id="chat_log">
