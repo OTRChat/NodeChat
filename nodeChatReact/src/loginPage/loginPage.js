@@ -15,6 +15,7 @@ class LoginPage extends Component {
             username: '',
             usernameInput: '',
             isLoggedIn: false,
+            previousUser: false,
             socket: '',
             connected: false
         };
@@ -69,13 +70,14 @@ class LoginPage extends Component {
             this.setState({ isLoggedIn: true });
 
             // Set the global username variable
-            this.setState({ username: previousUsername });
+            this.setState({ username: previousUsername }, ()=>{ this.userJoin(); });
 
             // Notify the server that someone has joined.
             this.userJoin();
 
             // Set the global variable that the user is connected
             this.setState({ connected: true });
+            this.setState({ previousUser: true });
         }
         // If the user did not have a username saved in localstorage then we hide the chatPage
         // login page will show, which gets the username from the user.
@@ -111,6 +113,7 @@ class LoginPage extends Component {
             currentPage = <ChatPage socket={this.socket}
                 connected={this.state.connected}
                 username={this.state.username}
+                previousUser={this.state.previousUser}
             />;
         } else {
             currentPage = this.displayLogin();
