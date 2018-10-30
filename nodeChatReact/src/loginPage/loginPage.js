@@ -69,7 +69,9 @@ class LoginPage extends Component {
             this.setState({ isLoggedIn: true });
 
             // Set the global username variable
-            this.setState({ username: previousUsername });
+            this.setState({ username: previousUsername },()=>{
+                this.userJoin();
+            });
 
             // Notify the server that someone has joined.
             this.userJoin();
