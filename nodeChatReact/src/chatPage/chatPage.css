@@ -23,7 +23,7 @@
 
 .from-them .messageBody{
     display: inline-block;
-    min-width: 48px;
+    min-width: 52px;
     margin-right: -10px;
     overflow-wrap: break-word;
     max-width: 300px;}
