@@ -14,7 +14,8 @@
   "scripts": {
     "start:prod": "forever start index.js",
     "start:dev": "gulp && node index.js",
-    "stop":  "forever stop index.js"
+    "stop":  "forever stop index.js",
+    "start": "node nodeChatServer/index.js"
   },
   "repository": {
     "type": "git",
