@@ -1,16 +1,47 @@
 .pageBottomReference {
     clear: both;
-    margin-bottom: 0px; }
+    margin-bottom: 65px;}
 
-.isTyping{
+.userName {
+    color: black;
+    position: relative;
+    top: 5px;}
+
+.from-them-userPic {
+    width: 300px;
+    height: 25px;
     position: absolute;
-    top: 660px;
-    left: 10px;
-    list-style: none;
-    overflow: hidden;
-    height: 20px;
+    left: -35px;
+    top: 15px;}
+
+.from-me-userPic {
+    position: absolute;
+    right: -35px;}
+
+.from-them-userPic>img {
+    right: -4px;}
+
+.from-them .messageBody{
+    display: inline-block;
+    min-width: 48px;
+    margin-right: -10px;
+    overflow-wrap: break-word;
+    max-width: 300px;}
+
+.from-me .messageBody{
+    display: inline-block;
+    min-width: 45px;
+    margin-right: -5px;
+    text-align: right;
+    overflow-wrap: break-word;
+    max-width: 300px;}
+
+.from-them .messageTime {
+    left: 25px;
 }
 
-.isTyping li{
-    display: inline;
-}
+.userNamePic {
+    width: 25px;
+    height: 25px;
+    position: relative;
+    right: 2px;}
