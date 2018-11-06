@@ -15,6 +15,7 @@ class ChatPage extends Component {
             greeting: '',
             connected: props.connected,
             username: props.username,
+            userIsTyping: [],
             previousUser: props.previousUser
         };
         this.setChatInput = this.setChatInput.bind(this);
@@ -30,6 +31,22 @@ class ChatPage extends Component {
                 this.addChatMessage(message);
                 if(this.state.username !== message.username){
                     this.notifyUser(message);
+                }
+            });
+            this.state.socket.on('typing', (user) => {
+                if(this.state.username !== user.username){
+                    if(!this.state.userIsTyping.find(function(users){
+                        return users == user.username;
+                    })){
+                        this.setState({ userIsTyping: [...this.state.userIsTyping, user.username] });
+                    }
+                }
+            });
+            this.state.socket.on('stop typing', (user) => {
+                if(this.state.username !== user.username){
+                    this.setState({userIsTyping: this.state.userIsTyping.filter(function(users) { 
+                        return users !== user.username;
+                    })});
                 }
             });
         }
@@ -53,6 +70,11 @@ class ChatPage extends Component {
         }
     }
     setChatInput(event) {
+        if(event.target.value !== ""){
+            this.state.socket.emit('typing', this.state.username);
+        } else if(event.target.value === ""){
+            this.state.socket.emit('stop typing', this.state.username);
+        }
         this.setState({ chatInput: event.target.value });
     }
 
@@ -200,6 +222,16 @@ class ChatPage extends Component {
                                 </li>);
                             })}
                         </ul>
+                        <div className="isTyping">
+                            <ul>{this.state.userIsTyping.map((users, index) => {
+                                    return (<li key={index}>
+                                        <span className="typing">
+                                            {users} is typing...&nbsp;
+                                        </span>
+                                    </li>);
+                                })}
+                            </ul>
+                        </div>
                         <div className="inputContainer">
                             <input id="message_text" placeholder="Send a message"
                                 value={this.state.chatInput}
