@@ -18,3 +18,12 @@ cd nodeChatReact
 # Run the react app
 npm start
 ```
+
+### Build Options
+```bash
+# Compile Sass
+gulp sass
+
+# Update the favicon (currently referencing public/image/logo-favicon.svg)
+gulp favicon
+```
