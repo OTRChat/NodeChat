@@ -11,6 +11,12 @@ npm install
 
 # Run the server!
 npm start
+
+# Enter react app folder
+cd nodeChatReact
+
+# Run the react app
+npm start
 ```
 
 ### Build Options
