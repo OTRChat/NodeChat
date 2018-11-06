@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './chatPage.css';
 import * as Push from "push.js"
 import mp3_file from '../app/assets/sound/ping.mp3';
+import userImg from './user.png'
 
 class ChatPage extends Component {
 
@@ -88,12 +89,22 @@ class ChatPage extends Component {
             messageClass: data.messageClass,
             UserName: data.username,
             messageBody: messageBody,
-            messageTime: date
+            messageTime: date,
+            fromThemUserName: '',
+            messageSenderClass:''
+        }
+        // Add User name to message if from-them
+        if(data.messageClass !== "from-me whiteText"){
+            messageContainer.fromThemUserName = <span className="from-them-userName">{data.username}</span>;
+            messageContainer.messageSenderClass = "from-them-userPic";
+        } else {
+            messageContainer.messageSenderClass = "from-me-userPic";
+            messageContainer.UserName = "Me";
         }
 
-        this.setState({ chatLog: [...this.state.chatLog, messageContainer] });
-
-        this.scrollToBottom();
+        this.setState({ chatLog: [...this.state.chatLog, messageContainer] },()=>{
+            this.scrollToBottom();
+        });
     }
 
     parseMessageText(inputString) {
@@ -174,17 +185,20 @@ class ChatPage extends Component {
                         <ul id="chat_log">
                             {this.state.greeting /*To Do make only show at first login*/}
                             {this.state.chatLog.map((message, index) => {
-
-                                return (<li key={index}
+                                return (<li key={index}  ref={el => { this.el = el; }}
                                     className={"message " + message.messageClass}>
-                                    {message.messageBody}
-                                    <span className="messageTime">
-                                        {message.messageTime}
-                                    </span>
+                                    <div className={message.messageSenderClass}>
+                                        <img  className="userNamePic" src={userImg}></img>
+                                        <p className="userName">{message.UserName}</p>
+                                    </div>
+                                    <div>
+                                        {message.messageBody}
+                                        <span className="messageTime">
+                                            {message.messageTime}
+                                        </span>
+                                    </div>
                                 </li>);
                             })}
-                            <li id="pageBottomReference" 
-                            className="pageBottomReference" ref={el => { this.el = el; }} />
                         </ul>
                         <div className="inputContainer">
                             <input id="message_text" placeholder="Send a message"
