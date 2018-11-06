@@ -13,7 +13,8 @@ class ChatPage extends Component {
             chatLog: [],
             greeting: '',
             connected: props.connected,
-            username: props.username
+            username: props.username,
+            previousUser: props.previousUser
         };
         this.setChatInput = this.setChatInput.bind(this);
         this.enterKeyPress = this.enterKeyPress.bind(this);
@@ -21,7 +22,9 @@ class ChatPage extends Component {
     componentDidMount() {
         if (this.state.connected) {
             // Create a greeting message for the newly connected user
-            this.greetUser();
+            if(!this.state.previousUser){
+                this.greetUser();
+            }
             this.state.socket.on('new message', (message) => {
                 this.addChatMessage(message);
                 if(this.state.username !== message.username){
