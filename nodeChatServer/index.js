@@ -29,7 +29,7 @@ io.on('connection', function(socket){
   
   // When a user disconnects then log that to the server
   socket.on('disconnect', function(){
-    console.log('User: ' + socket.username + ' has disconnected.' + socket.id);
+    console.log("User: '" + socket.username + "' has disconnected. " + socket.id);
   });
   
   socket.on('typing', function(){
@@ -43,12 +43,7 @@ io.on('connection', function(socket){
       username: socket.username
     });
   });
-  
-  // When a new user is registered (they make a username), set their username on the server.
-  socket.on('add user', function(username){
-    socket.username = username;
-  });
-  
+    
   // When a new user joins broadcast it to the other users on the server
   // Also set the servers username.
   socket.on('user join', function(username){

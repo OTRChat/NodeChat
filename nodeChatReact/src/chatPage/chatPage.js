@@ -36,7 +36,7 @@ class ChatPage extends Component {
             this.state.socket.on('typing', (user) => {
                 if(this.state.username !== user.username){
                     if(!this.state.userIsTyping.find(function(users){
-                        return users == user.username;
+                        return users === user.username;
                     })){
                         this.setState({ userIsTyping: [...this.state.userIsTyping, user.username] });
                     }
@@ -64,7 +64,7 @@ class ChatPage extends Component {
     }
 
     enterKeyPress(e) {
-        if (e.keyCode == 13) {
+        if (e.keyCode === 13) {
             this.sendMessage();
             this.setState({ chatInput: '' });
         }
