@@ -46,4 +46,4 @@ npm start
 
 ### Contributing to this Project
 
-This project is open to anyone. Please read our CONTRIBUTING.md for mor information.
+This project is open to anyone. Please read our CONTRIBUTING.md for more information.
