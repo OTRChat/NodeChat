@@ -15,7 +15,7 @@ To develop a robust chat application, that is able to act as a stand alone appli
 * Private chat space on your website managed by you instead of thirdParty like Slack or Skype.
 
 ## Project Goal
-* Publish on [NPM](www.npmjs.com) to allow developers easy integration into thier projects.
+* Publish on [NPM](www.npmjs.com).
 
 ### Quick Start Guide
 To start the app you need to have the server and the react app running.
