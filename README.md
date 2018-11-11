@@ -47,8 +47,3 @@ npm start
 ### Contributing to this Project
 
 This project is open to anyone. Please read our CONTRIBUTING.md for mor information.
-=======
-# Update the favicon (currently referencing public/image/logo-favicon.svg)
-gulp favicon
-```
->>>>>>> ee8f2d5cb96954f9f544bb81996f83a499dd3675
