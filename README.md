@@ -26,12 +26,19 @@ npm install
 ### Starting the server
 ```bash
 npm start
+
+# Enter react app folder
+cd nodeChatReact
+
+# Run the react app
+npm start
 ```
 ### Starting the react app
 ```bash
 # Enter react app folder
 cd nodeChatReact
 
+<<<<<<< HEAD
 # Run the react app
 npm start
 ```
@@ -40,3 +47,8 @@ npm start
 ### Contributing to this Project
 
 This project is open to anyone. Please read our CONTRIBUTING.md for mor information.
+=======
+# Update the favicon (currently referencing public/image/logo-favicon.svg)
+gulp favicon
+```
+>>>>>>> ee8f2d5cb96954f9f544bb81996f83a499dd3675
