@@ -4,12 +4,27 @@ A group chat application written in Node and SocketIO.
 
 See it live [here](https://chat.joshghent.com).
 
-### Quick Start Guide
-```bash
-# Install the dependencies
-npm install
+## Project Vision
 
-# Run the server!
+To develop a robust chat application, that is able to act as a stand alone application and/or be embeded inside of a existing application.
+
+### Use Cases
+* StandAlone Chat website
+* Customer Support Chat
+* Live Open Chat on a website
+* Private chat space on your website managed by you instead of thirdParty like Slack or Skype.
+
+## Project Goal
+* Publish on [NPM](www.npmjs.com).
+
+### Quick Start Guide
+To start the app you need to have the server and the react app running.
+### Install the dependencies
+```bash
+npm install
+```
+### Starting the server
+```bash
 npm start
 
 # Enter react app folder
@@ -18,12 +33,16 @@ cd nodeChatReact
 # Run the react app
 npm start
 ```
-
-### Build Options
+### Starting the react app
 ```bash
-# Compile Sass
-gulp sass
+# Enter react app folder
+cd nodeChatReact
 
-# Update the favicon (currently referencing public/image/logo-favicon.svg)
-gulp favicon
+# Run the react app
+npm start
 ```
+
+
+### Contributing to this Project
+
+This project is open to anyone. Please read our CONTRIBUTING.md for more information.
