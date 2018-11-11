@@ -38,7 +38,6 @@ npm start
 # Enter react app folder
 cd nodeChatReact
 
-<<<<<<< HEAD
 # Run the react app
 npm start
 ```
