@@ -16,19 +16,24 @@ When working on a issue, please post in that issue that you would like to work o
 
 To start the app you need to have the server and the react app running.
 
-### Install the dependencies
-```bash
-npm install
-```
-
 ### Starting the server
 ```bash
+# Enter server folder
+cd nodeChatServer
+
+# Install the dependencies
+npm install
+
+# Run the server
 npm start
 ```
 ### Starting the react app
 ```bash
 # Enter react app folder
 cd nodeChatReact
+
+# Install the dependencies
+npm install
 
 # Run the react app
 npm start
