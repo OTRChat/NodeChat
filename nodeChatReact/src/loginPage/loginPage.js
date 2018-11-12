@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './loginPage.css';
 import ChatPage from '../chatPage/chatPage.js';
 import io from 'socket.io-client';
-import { Socket } from 'net';
 
 class LoginPage extends Component {
 
