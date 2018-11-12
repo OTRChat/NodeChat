@@ -44,7 +44,7 @@ class ChatPage extends Component {
             });
             this.state.socket.on('stop typing', (user) => {
                 if(this.state.username !== user.username){
-                    this.setState({userIsTyping: this.state.userIsTyping.filter(function(users) { 
+                    this.setState({userIsTyping: this.state.userIsTyping.filter(function(users) {
                         return users !== user.username;
                     })});
                 }
@@ -185,7 +185,7 @@ class ChatPage extends Component {
     }
 
     notifyUser(message){
-  
+
         // Create a push notification
         Push.create(message.username, {
           body: message.message,

@@ -6,15 +6,6 @@
   "main": "index.js",
   "author": "Josh Ghent",
   "license": "MIT",
-  "dependencies": {
-    "push.js": "0.0.11",
-    "react": "^16.5.2",
-    "react-dom": "^16.5.2",
-    "react-scripts": "1.1.5",
-    "shortid": "2.2.6",
-    "socket.io": "^1.4.6",
-    "socket.io-client": "^2.1.1"
-  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -25,8 +16,15 @@
     "type": "git",
     "url": "git@github.com:joshghent/NodeChat.git"
   },
+  "dependencies": {
+    "push.js": "0.0.11",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2",
+    "react-scripts": "1.1.5",
+    "shortid": "2.2.6",
+    "socket.io": "^1.4.6",
+    "socket.io-client": "^2.1.1"
+  },
   "devDependencies": {
-    "gulp": "^3.9.1",
-    "gulp-sass": "^2.3.2"
   }
 }
