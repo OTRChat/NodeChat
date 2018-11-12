@@ -19,18 +19,16 @@ To develop a robust chat application, that is able to act as a stand alone appli
 
 ### Quick Start Guide
 To start the app you need to have the server and the react app running.
-### Install the dependencies
-```bash
-npm install
-```
+
 ### Starting the server
 ```bash
-npm start
+# Enter server folder
+cd nodeChatServer
 
-# Enter react app folder
-cd nodeChatReact
+# Install the dependencies
+npm install
 
-# Run the react app
+# Run the server
 npm start
 ```
 ### Starting the react app
@@ -38,10 +36,12 @@ npm start
 # Enter react app folder
 cd nodeChatReact
 
+# Install the dependencies
+npm install
+
 # Run the react app
 npm start
 ```
-
 
 ### Contributing to this Project
 
