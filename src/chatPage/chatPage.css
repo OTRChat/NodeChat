@@ -1,3 +1,27 @@
+.topnav {
+    background-color: rgb(208, 207, 207);
+    overflow: hidden;
+}
+
+.topnav input {
+  float: left;
+  color: white;
+  background-color: #808080;
+  text-align: center;
+  padding: 12px 14px;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.topnav input:hover {
+  background-color: #7b5e5e;
+  color: black;
+}
+
+.topnav-right {
+  float: right;
+}
+
 .pageBottomReference {
     clear: both;
     margin-bottom: 65px;}
@@ -47,9 +71,100 @@
     right: 2px;}
 
 .isTyping{
-  padding: .5%;
+    padding: .5%;
 }
 
 .isTyping li{
     display: inline;
 }
+
+.message {
+    clear: both;
+    margin-bottom: 25px;}
+  
+.inputContainer {
+    position: fixed;
+    bottom: 0;
+    width: 100%; }
+  
+#message_text {
+    border: 0;
+    padding: 10px;
+    width: 100%;
+    margin-right: 0.5%; }
+
+#message_text:focus {
+    outline: none; }
+  
+#chat_log {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    height: 100%;
+    padding-bottom: 15px; }
+  
+.messageTime {
+    float: right;
+    font-size: 11px;
+    display: table-cell;
+    bottom: 0;
+    position: absolute;
+    right: 0;
+    margin-right: 20px;
+    opacity: 0.5; }
+
+.chatPage {
+    background-image: url("../app/assets/image/loops.png");
+    background-repeat: repeat;
+    height: 96%;
+    padding-top: 10px;}
+      
+.from-me {
+    position: relative;
+    background: #0089FF;
+    color: white;
+    float: right;
+    padding: 15px 25px;
+    border-radius: 25px;
+    margin-right: 40px;
+    padding-left: 10px; }
+      
+.from-me:after {
+    left: 97%;
+    top: 15%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-color: rgba(0, 187, 255, 0);
+    border-left-color: #0089FF;
+    border-width: 10px;
+    margin-top: 7px; }
+      
+.from-them {
+    position: relative;
+    background: #D7D7D7;
+    float: left;
+    padding: 15px 25px;
+    border-radius: 25px;
+    margin-left: 40px; }
+.from-them:after {
+    right: 98%;
+    top: 15%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-right-color: #D7D7D7;
+    border-width: 10px;
+    margin-top: 7px; }
+
+.inputContainer .chatBox {
+    background: #d2d2d2;
+    padding: 3px;}
+
