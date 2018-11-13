@@ -47,12 +47,7 @@
     right: 2px;}
 
 .isTyping{
-    position: absolute;
-    top: 660px;
-    left: 10px;
-    list-style: none;
-    overflow: hidden;
-    height: 20px;
+  padding: .5%;
 }
 
 .isTyping li{

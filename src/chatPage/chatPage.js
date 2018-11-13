@@ -36,7 +36,7 @@ class ChatPage extends Component {
             this.state.socket.on('typing', (user) => {
                 if(this.state.username !== user.username){
                     if(!this.state.userIsTyping.find(function(users){
-                        return users == user.username;
+                        return users === user.username;
                     })){
                         this.setState({ userIsTyping: [...this.state.userIsTyping, user.username] });
                     }
@@ -64,7 +64,7 @@ class ChatPage extends Component {
     }
 
     enterKeyPress(e) {
-        if (e.keyCode == 13) {
+        if (e.keyCode === 13) {
             this.sendMessage();
             this.setState({ chatInput: '' });
         }
@@ -176,7 +176,7 @@ class ChatPage extends Component {
         // Build up an image tag and return it
         // Set the source of the img tag
         if (inputString.substring(0, 4) === "http" && this.imageFile(filetype) === true) {
-            return <img className='image_message' src={" " + inputString + " "} />;
+            return <img className='image_message' src={" " + inputString + " "} alt='image_message'/>;
         }
     }
 
@@ -211,7 +211,7 @@ class ChatPage extends Component {
                                 return (<li key={index}  ref={el => { this.el = el; }}
                                     className={"message " + message.messageClass}>
                                     <div className={message.messageSenderClass}>
-                                        <img  className="userNamePic" src={userImg}></img>
+                                        <img className="userNamePic" src={userImg} alt='avatar' />
                                         <p className="userName">{message.UserName}</p>
                                     </div>
                                     <div>
@@ -223,23 +223,25 @@ class ChatPage extends Component {
                                 </li>);
                             })}
                         </ul>
-                        <div className="isTyping">
-                            <ul>{this.state.userIsTyping.map((users, index) => {
-                                    return (<li key={index}>
-                                        <span className="typing">
-                                            {users} is typing...&nbsp;
-                                        </span>
-                                    </li>);
-                                })}
-                            </ul>
-                        </div>
                         <div className="inputContainer">
-                            <input id="message_text" placeholder="Send a message"
-                                value={this.state.chatInput}
-                                onChange={this.setChatInput}
-                                autoFocus
-                                onKeyDown={this.enterKeyPress}
-                            />
+                            <div className="isTyping">
+                                <ul>{this.state.userIsTyping.map((users, index) => {
+                                        return (<li key={index}>
+                                            <span className="typing">
+                                                {users} is typing...&nbsp;
+                                            </span>
+                                        </li>);
+                                    })}
+                                </ul>
+                            </div>
+                            <div className="chatBox">
+                                <input id="message_text" placeholder="Send a message"
+                                    value={this.state.chatInput}
+                                    onChange={this.setChatInput}
+                                    autoFocus
+                                    onKeyDown={this.enterKeyPress}
+                                />
+                            </div>
                         </div>
                     </li>
                 </ul>

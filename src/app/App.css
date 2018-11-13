@@ -9,11 +9,14 @@
   margin-bottom: 25px;}
 
 .inputContainer {
-  background: #d2d2d2;
-  padding: 3px;
   position: fixed;
   bottom: 0;
   width: 100%; }
+
+.inputContainer .chatBox {
+  background: #d2d2d2;
+  padding: 3px;
+}
 
 #message_text {
   border: 0;
