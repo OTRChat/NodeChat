@@ -58,3 +58,10 @@
 .isTyping li{
     display: inline;
 }
+
+.systemLog {
+    text-align: center;
+    color: gray;
+    padding: 0.2em;
+    width: 100%;
+}
