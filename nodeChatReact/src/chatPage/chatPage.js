@@ -4,6 +4,7 @@ import * as Push from "push.js";
 import mp3_file from '../app/assets/sound/ping.mp3';
 import userImg from './user.png';
 import chatIcon from './chatIconPushNotification.png';
+import LoginPage from '../loginPage/loginPage.js';
 class ChatPage extends Component {
 
     constructor(props) {
@@ -16,10 +17,12 @@ class ChatPage extends Component {
             connected: props.connected,
             username: props.username,
             userIsTyping: [],
-            previousUser: props.previousUser
+            previousUser: props.previousUser,
+            logout: false
         };
         this.setChatInput = this.setChatInput.bind(this);
         this.enterKeyPress = this.enterKeyPress.bind(this);
+        this.Logout = this.Logout.bind(this);
     }
     componentDidMount() {
         if (this.state.connected) {
@@ -199,50 +202,76 @@ class ChatPage extends Component {
         this.Sound.play();
     }
 
-    render() {
-        return (
+    Logout(){
+        localStorage.clear();
+        this.setState({logout: true });
+    }
+
+    displayChat(){
+        return (     
             <div>
-               <audio src={mp3_file} ref={Sound => { this.Sound = Sound; }}/>
-                <ul className="pages">
-                    <li className="chatPage page">
-                        <ul id="chat_log">
-                            {this.state.greeting /*To Do make only show at first login*/}
-                            {this.state.chatLog.map((message, index) => {
-                                return (<li key={index}  ref={el => { this.el = el; }}
-                                    className={"message " + message.messageClass}>
-                                    <div className={message.messageSenderClass}>
-                                        <img  className="userNamePic" src={userImg}></img>
-                                        <p className="userName">{message.UserName}</p>
-                                    </div>
-                                    <div>
-                                        {message.messageBody}
-                                        <span className="messageTime">
-                                            {message.messageTime}
-                                        </span>
-                                    </div>
-                                </li>);
-                            })}
-                        </ul>
-                        <div className="isTyping">
-                            <ul>{this.state.userIsTyping.map((users, index) => {
-                                    return (<li key={index}>
-                                        <span className="typing">
-                                            {users} is typing...&nbsp;
-                                        </span>
+                <audio src={mp3_file} ref={Sound => { this.Sound = Sound; }}/>
+                <div className="topnav">
+                    <div className="topnav-right">
+                        <input type="button" value="Logout" onClick={this.Logout} />
+                    </div>
+                </div>
+                    <ul className="pages">
+                        <li className="chatPage page">
+                            <ul id="chat_log">
+                                {this.state.greeting /*To Do make only show at first login*/}
+                                {this.state.chatLog.map((message, index) => {
+                                    return (<li key={index}  ref={el => { this.el = el; }}
+                                        className={"message " + message.messageClass}>
+                                        <div className={message.messageSenderClass}>
+                                            <img  className="userNamePic" src={userImg}></img>
+                                            <p className="userName">{message.UserName}</p>
+                                        </div>
+                                        <div>
+                                            {message.messageBody}
+                                            <span className="messageTime">
+                                                {message.messageTime}
+                                            </span>
+                                        </div>
                                     </li>);
                                 })}
                             </ul>
-                        </div>
-                        <div className="inputContainer">
-                            <input id="message_text" placeholder="Send a message"
-                                value={this.state.chatInput}
-                                onChange={this.setChatInput}
-                                autoFocus
-                                onKeyDown={this.enterKeyPress}
-                            />
-                        </div>
-                    </li>
-                </ul>
+                            <div className="isTyping">
+                                <ul>{this.state.userIsTyping.map((users, index) => {
+                                        return (<li key={index}>
+                                            <span className="typing">
+                                                {users} is typing...&nbsp;
+                                            </span>
+                                        </li>);
+                                    })}
+                                </ul>
+                            </div>
+                            <div className="inputContainer">
+                                <input id="message_text" placeholder="Send a message"
+                                    value={this.state.chatInput}
+                                    onChange={this.setChatInput}
+                                    autoFocus
+                                    onKeyDown={this.enterKeyPress}
+                                    
+                                />
+                            </div>
+                        </li>
+                    </ul>
+            </div>
+        );
+    }
+
+    render() {
+        let currentPage;
+        if(this.state.logout){
+            currentPage = <LoginPage />;
+        }
+        else{
+            currentPage = this.displayChat();
+        }
+        return(
+            <div>
+                {currentPage}
             </div>
         );
     }
