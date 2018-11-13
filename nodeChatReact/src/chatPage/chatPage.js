@@ -28,7 +28,6 @@ class ChatPage extends Component {
                 this.greetUser();
             }
             this.state.socket.on('new message', (message) => {
-                //this.addChatMessage(message);
                 this.addChatMessage(message);
                 if(this.state.username !== message.username){
                     this.notifyUser(message);
