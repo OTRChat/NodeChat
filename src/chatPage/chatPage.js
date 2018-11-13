@@ -236,23 +236,25 @@ class ChatPage extends Component {
                                     </li>);
                                 })}
                             </ul>
-                            <div className="isTyping">
-                                <ul>{this.state.userIsTyping.map((users, index) => {
-                                        return (<li key={index}>
-                                            <span className="typing">
-                                                {users} is typing...&nbsp;
-                                            </span>
-                                        </li>);
-                                    })}
-                                </ul>
-                            </div>
                             <div className="inputContainer">
-                                <input id="message_text" placeholder="Send a message"
-                                    value={this.state.chatInput}
-                                    onChange={this.setChatInput}
-                                    autoFocus
-                                    onKeyDown={this.enterKeyPress}
-                                />
+                                <div className="isTyping">
+                                    <ul>{this.state.userIsTyping.map((users, index) => {
+                                            return (<li key={index}>
+                                                <span className="typing">
+                                                    {users} is typing...&nbsp;
+                                                </span>
+                                            </li>);
+                                        })}
+                                    </ul>
+                                </div>
+                                <div className="chatBox">
+                                    <input id="message_text" placeholder="Send a message"
+                                        value={this.state.chatInput}
+                                        onChange={this.setChatInput}
+                                        autoFocus
+                                        onKeyDown={this.enterKeyPress}
+                                    />
+                                </div>
                             </div>
                         </li>
                     </ul>
