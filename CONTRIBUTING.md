@@ -59,3 +59,4 @@ File an issue, explain the feature you want added and a moderator will review it
 * Assigned - an issue that a someone is working on.
 * Good First Issue - issues that are smaller in size.
 * High Prioriy - an issue that we want to get resolved quickly.
+* Discussion - an issue that is being used to discuss a possible change or idea.
