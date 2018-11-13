@@ -18,13 +18,12 @@ To develop a robust chat application, that is able to act as a stand alone appli
 * Publish on [NPM](www.npmjs.com).
 
 ### Quick Start Guide
-To start the app you need to have the server and the react app running.
+To start the app you need to have both the server and the react app running.
 
 ### Starting the server
+The server is available here https://github.com/OTRChat/server.
+Inside the server folder run the following commands.
 ```bash
-# Enter server folder
-cd nodeChatServer
-
 # Install the dependencies
 npm install
 
@@ -32,10 +31,8 @@ npm install
 npm start
 ```
 ### Starting the react app
+Inside the react app folder run the following commands.
 ```bash
-# Enter react app folder
-cd nodeChatReact
-
 # Install the dependencies
 npm install
 
