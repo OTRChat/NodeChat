@@ -44,7 +44,7 @@ class LoginPage extends Component {
             // Get the username from the username input
             // callback forces username update
             this.setState({ username: this.state.usernameInput }, function () {
-
+                
                 // Hide the login page as the user has got a username now
                 this.setState({ isLoggedIn: true });
 
@@ -127,5 +127,6 @@ class LoginPage extends Component {
         );
     }
 }
+
 
 export default LoginPage;
