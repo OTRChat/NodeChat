@@ -167,3 +167,9 @@
     border-right-color: #D7D7D7;
     border-width: 10px;
     margin-top: 7px; }
+
+.systemLog {
+    text-align: center;
+    color: gray;
+    padding: 0.2em;
+    width: 100%;}
