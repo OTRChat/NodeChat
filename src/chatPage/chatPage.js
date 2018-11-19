@@ -24,6 +24,7 @@ class ChatPage extends Component {
         this.enterKeyPress = this.enterKeyPress.bind(this);
         this.Logout = this.Logout.bind(this);
     }
+    
     componentDidMount() {
         if (this.state.connected) {
             // Create a greeting message for the newly connected user
@@ -59,8 +60,8 @@ class ChatPage extends Component {
                 this.addSystemMessage("User " + username.username + " has left the room");
             })
         }
-
     }
+
     greetUser() {
         // Create a span with the greeting message
         var userGreeting = <span className="messageBody">Hello there {this.state.username}!</span>;
@@ -76,12 +77,13 @@ class ChatPage extends Component {
         if (e.keyCode === 13) {
             this.sendMessage();
             this.setState({ chatInput: '' });
+            this.state.socket.emit('stop typing', this.state.username);
         }
     }
     setChatInput(event) {
         if(event.target.value !== ""){
             this.state.socket.emit('typing', this.state.username);
-        } else if(event.target.value === ""){
+        } else {
             this.state.socket.emit('stop typing', this.state.username);
         }
         this.setState({ chatInput: event.target.value });
