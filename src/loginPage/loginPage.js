@@ -8,7 +8,7 @@ class LoginPage extends Component {
     constructor(props) {
         super(props);
 
-        this.socket = io('http://localhost:9876');
+        this.socket = io(process.env.LOCAL_HOST_FRONTEND);
 
         this.state = {
             currentInput: '',
@@ -44,7 +44,7 @@ class LoginPage extends Component {
             // Get the username from the username input
             // callback forces username update
             this.setState({ username: this.state.usernameInput }, function () {
-                
+
                 // Hide the login page as the user has got a username now
                 this.setState({ isLoggedIn: true });
 
@@ -70,7 +70,7 @@ class LoginPage extends Component {
             this.setState({ isLoggedIn: true });
 
             // Set the global username variable
-            this.setState({ username: previousUsername },()=>{
+            this.setState({ username: previousUsername }, () => {
                 this.userJoin();
             });
 
