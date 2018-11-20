@@ -6,6 +6,7 @@
 
 .message {
   clear: both;
+  min-width: 85px;
   margin-bottom: 25px;}
 
 .inputContainer {
@@ -53,6 +54,7 @@
   position: absolute;
   right: 0;
   margin-right: 20px;
+  margin-bottom:2px;
   opacity: 0.5; }
 
 .whiteText {
