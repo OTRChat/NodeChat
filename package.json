@@ -14,14 +14,17 @@
   "scripts": {
     "start:prod": "forever start index.js",
     "start:dev": "gulp && node index.js",
-    "stop":  "forever stop index.js",
-    "start": "node nodeChatServer/index.js"
+    "stop": "forever stop index.js",
+    "start": "node nodeChatServer/index.js",
+    "lint": "eslint ./nodeChatReact/src/*"
   },
   "repository": {
     "type": "git",
     "url": "git@github.com:joshghent/NodeChat.git"
   },
   "devDependencies": {
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.9.0",
     "gulp": "^3.9.1",
     "gulp-real-favicon": "^0.3.0",
     "gulp-sass": "^2.3.2"
