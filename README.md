@@ -40,6 +40,16 @@ npm install
 npm start
 ```
 
+### URL's
+The app is deployed with Heroku and configured to auto deploy the develop and master branch
+Development: https://joshghent-nodechat-staging.herokuapp.com/
+Master: https://chat.joshghent.com/
+
+Server development: https://joshghent-nodechat-server.herokuapp.com/
+Server master: https://joshghent-nodechat-server.herokuapp.com/
+
+If environment variables need updating as part of an update, then please ask one of the maintainers
+
 ### Contributing to this Project
 
 This project is open to anyone. Please read our CONTRIBUTING.md for more information.

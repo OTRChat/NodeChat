@@ -26,6 +26,7 @@ class ChatPage extends Component {
         this.Logout = this.Logout.bind(this);
         this.Avatar = this.Avatar.bind(this);
     }
+    
     componentDidMount() {
         if (this.state.connected) {
             // Create a greeting message for the newly connected user
@@ -54,9 +55,15 @@ class ChatPage extends Component {
                     })});
                 }
             });
+            this.state.socket.on('user join', (username) => {
+                this.addSystemMessage("User " + username + " joined the room." );
+            })
+            this.state.socket.on('user disconnected', (username) => {
+                this.addSystemMessage("User " + username.username + " has left the room");
+            })
         }
-
     }
+
     greetUser() {
         // Create a span with the greeting message
         var userGreeting = <span className="messageBody">Hello there {this.state.username}!</span>;
@@ -72,12 +79,13 @@ class ChatPage extends Component {
         if (e.keyCode === 13) {
             this.sendMessage();
             this.setState({ chatInput: '' });
+            this.state.socket.emit('stop typing', this.state.username);
         }
     }
     setChatInput(event) {
         if(event.target.value !== ""){
             this.state.socket.emit('typing', this.state.username);
-        } else if(event.target.value === ""){
+        } else {
             this.state.socket.emit('stop typing', this.state.username);
         }
         this.setState({ chatInput: event.target.value });
@@ -105,31 +113,51 @@ class ChatPage extends Component {
     }
 
     addChatMessage(data) {
-        // Parse the message text. If the message is a link to an image then we do some special handling of it.
+        var date = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        var messageSenderClass = "";
+        var UserName = data.username;
         var messageBody = this.parseMessageText(data.message);
 
-        // Builds the current time of the message.
-        var date = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-
-        // Add the message to the chat log
-        var messageContainer = {
-            messageClass: data.messageClass,
-            UserName: data.username,
-            messageBody: messageBody,
-            messageTime: date,
-            fromThemUserName: '',
-            messageSenderClass:''
-        }
-        // Add User name to message if from-them
         if(data.messageClass !== "from-me whiteText"){
-            messageContainer.fromThemUserName = <span className="from-them-userName">{data.username}</span>;
-            messageContainer.messageSenderClass = "from-them-userPic";
+            messageSenderClass = "from-them-userPic";
         } else {
-            messageContainer.messageSenderClass = "from-me-userPic";
-            messageContainer.UserName = "Me";
+            messageSenderClass = "from-me-userPic";
+            UserName = "Me";
         }
 
-        this.setState({ chatLog: [...this.state.chatLog, messageContainer] },()=>{
+        var element = <div>
+            <div className={messageSenderClass}>
+                <img  className="userNamePic" src={userImg}></img>
+                <p className="userName">{UserName}</p>
+            </div>
+            <div>
+                {messageBody}
+                <span className="messageTime">
+                    {date}
+                </span>
+            </div>
+        </div>;   
+        var container = {
+            class: data.messageClass,
+            element: element
+        }
+        this.setState({ chatLog: [...this.state.chatLog, container] },()=>{
+            this.scrollToBottom();
+        });  
+    }
+
+    addSystemMessage(message) {
+        var date = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        var element =
+        <div>
+            {message} ({date})
+        </div>;  
+
+        var container = {
+            class: "systemLog",
+            element: element
+        }
+        this.setState({ chatLog: [...this.state.chatLog, container] },()=>{
             this.scrollToBottom();
         });
     }

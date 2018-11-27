@@ -49,7 +49,7 @@ class LoginPage extends Component {
                 this.setState({ isLoggedIn: true });
 
                 // Tell the server that we have got a new user
-                this.socket.emit('add user', this.state.username);
+                this.socket.emit('user join', this.state.username);
 
                 // Set the username that the user chose in localstorage
                 // This is so that when we reload the page, we can get the username they had previously
@@ -64,25 +64,24 @@ class LoginPage extends Component {
     checkIfPreviousUser() {
         var previousUsername = localStorage.getItem('NodeChatUsername');
 
-        if (previousUsername !== null) {
-
-            // Hide the login page
-            this.setState({ isLoggedIn: true });
-
-            // Set the global username variable
-            this.setState({ username: previousUsername },()=>{
-                this.userJoin();
-            });
-
-            // Notify the server that someone has joined.
-            this.userJoin();
-
-            // Set the global variable that the user is connected
-            this.setState({ connected: true });
-            this.setState({ previousUser: true });
+        if (previousUsername !== null) {        
+            this.setState(
+                {
+                // Hide the login page 
+                isLoggedIn: true,
+                // Set the global username variable
+                username: previousUsername,
+                // Set the global variable that the user is connected
+                connected: true,
+                previousUser: true
+                },
+                () => {
+                    this.userJoin();
+                }
+            );
         }
-        // If the user did not have a username saved in localstorage then we hide the chatPage
-        // login page will show, which gets the username from the user.
+        // If the user did not have a username saved in localstorage then the chatPage is hidden
+        // login page is shown, which ask for a username from the user.
     }
 
     // Tell the server that we've had a user join
