@@ -16,6 +16,7 @@ class ChatPage extends Component {
             greeting: '',
             connected: props.connected,
             username: props.username,
+            avatar: userImg,
             userIsTyping: [],
             previousUser: props.previousUser,
             logout: false
@@ -23,6 +24,7 @@ class ChatPage extends Component {
         this.setChatInput = this.setChatInput.bind(this);
         this.enterKeyPress = this.enterKeyPress.bind(this);
         this.Logout = this.Logout.bind(this);
+        this.Avatar = this.Avatar.bind(this);
     }
     
     componentDidMount() {
@@ -235,12 +237,19 @@ class ChatPage extends Component {
         this.setState({logout: true });
     }
 
+    Avatar(event){
+        this.setState({
+            avatar: URL.createObjectURL(event.target.files[0])
+        });
+    }
+
     displayChat(){
         return (     
             <div>
                 <audio src={mp3_file} ref={Sound => { this.Sound = Sound; }}/>
                 <div className="topnav">
                     <div className="topnav-right">
+                        <input type="file" id="avatarFile" name="avatarFile" onChange={this.Avatar}/>
                         <input type="button" value="Logout" onClick={this.Logout} />
                     </div>
                 </div>
@@ -248,10 +257,19 @@ class ChatPage extends Component {
                         <li className="chatPage page">
                             <ul id="chat_log">
                                 {this.state.greeting /*To Do make only show at first login*/}
-                                {this.state.chatLog.map((entry, index) => {
-                                    return (
-                                    <li key={index} ref={el => {this.el = el;}} className={"message " + entry.class}> 
-                                        {entry.element}
+                                {this.state.chatLog.map((message, index) => {
+                                    return (<li key={index}  ref={el => { this.el = el; }}
+                                        className={"message " + message.messageClass}>
+                                        <div className={message.messageSenderClass}>
+                                            <img className="userNamePic" src={this.state.avatar} alt='avatar' />
+                                            <p className="userName">{message.UserName}</p>
+                                        </div>
+                                        <div>
+                                            {message.messageBody}
+                                            <span className="messageTime">
+                                                {message.messageTime}
+                                            </span>
+                                        </div>
                                     </li>);
                                 })}
                             </ul>
