@@ -124,7 +124,7 @@ class ChatPage extends Component {
             messageContainer.messageSenderClass = "from-them-userPic";
         } else {
             messageContainer.messageSenderClass = "from-me-userPic";
-            messageContainer.UserName = "Me";
+            messageContainer.UserName = this.state.username;
         }
 
         this.setState({ chatLog: [...this.state.chatLog, messageContainer] },()=>{
