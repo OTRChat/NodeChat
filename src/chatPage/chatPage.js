@@ -122,7 +122,7 @@ class ChatPage extends Component {
             messageSenderClass = "from-them-userPic";
         } else {
             messageSenderClass = "from-me-userPic";
-            UserName = "Me";
+            UserName = this.state.username;
         }
 
         var element = <div>
