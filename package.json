@@ -7,7 +7,7 @@
   "author": "Josh Ghent",
   "license": "MIT",
   "scripts": {
-    "lint": "eslint ./src/*"
+    "lint": "eslint ./src/*",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
@@ -21,7 +21,7 @@
     "babel-eslint": "^10.0.1",
     "eslint": "^5.9.0",
     "eslint-plugin-react": "^7.11.1"
-  }
+  },
   "dependencies": {
     "push.js": "0.0.11",
     "react": "^16.5.2",

@@ -33,6 +33,10 @@ class ChatPage extends Component {
             if(!this.state.previousUser){
                 this.greetUser();
             }
+            // setup default avatar
+            this.setState({avatar: userImg});
+            this.state.socket.emit('add avatar', this.state.avatar);
+
             this.state.socket.on('new message', (message) => {
                 this.addChatMessage(message);
                 if(this.state.username !== message.username){
@@ -117,17 +121,19 @@ class ChatPage extends Component {
         var messageSenderClass = "";
         var UserName = data.username;
         var messageBody = this.parseMessageText(data.message);
+        var avatar = data.avatar;
 
         if(data.messageClass !== "from-me whiteText"){
             messageSenderClass = "from-them-userPic";
         } else {
             messageSenderClass = "from-me-userPic";
             UserName = this.state.username;
+            avatar = this.state.avatar;
         }
 
         var element = <div>
             <div className={messageSenderClass}>
-                <img  className="userNamePic" src={userImg}></img>
+                <img  className="userNamePic" src={avatar}></img>
                 <p className="userName">{UserName}</p>
             </div>
             <div>
@@ -137,6 +143,7 @@ class ChatPage extends Component {
                 </span>
             </div>
         </div>;   
+
         var container = {
             class: data.messageClass,
             element: element
@@ -240,6 +247,8 @@ class ChatPage extends Component {
     Avatar(event){
         this.setState({
             avatar: URL.createObjectURL(event.target.files[0])
+        }, ()=>{
+            this.state.socket.emit('add avatar', this.state.avatar);
         });
     }
 
@@ -259,17 +268,8 @@ class ChatPage extends Component {
                                 {this.state.greeting /*To Do make only show at first login*/}
                                 {this.state.chatLog.map((message, index) => {
                                     return (<li key={index}  ref={el => { this.el = el; }}
-                                        className={"message " + message.messageClass}>
-                                        <div className={message.messageSenderClass}>
-                                            <img className="userNamePic" src={this.state.avatar} alt='avatar' />
-                                            <p className="userName">{message.UserName}</p>
-                                        </div>
-                                        <div>
-                                            {message.messageBody}
-                                            <span className="messageTime">
-                                                {message.messageTime}
-                                            </span>
-                                        </div>
+                                        className={"message " + message.class}>
+                                        {message.element}
                                     </li>);
                                 })}
                             </ul>
