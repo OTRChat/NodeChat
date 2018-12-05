@@ -1,9 +1,24 @@
 {
     "parser": "babel-eslint",
-    "plugins": [
-        "react"
+    "extends": [
+        "airbnb",
+        "prettier",
+        "prettier/react"
     ],
-    "rules":{
+    "plugins": [
+        "prettier"
+    ],
+    "rules": {
+        "prettier/prettier": ["error"],
+        "quotes": ["error", "double"],
+        "indent": ["error", "tab"],
+        "react/jsx-indent": ["error", "tab"],
+        "react/jsx-one-expression-per-line": 0,
+        "react/jsx-filename-extension": [1, {"extensions": [".js",".jsx"]}],
+        "react/prop-types": 0,
+        "no-underscore-dangle": 0,
+        "import/imports-first": ["error","absolute-first"],
+        "import/newline-after-import": "error",
         "no-undef": [1],
         "no-console": [1]
     }

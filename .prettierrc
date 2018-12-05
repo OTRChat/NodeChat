@@ -1,0 +1,7 @@
+{
+    "trailingComma": "es5",
+    "useTabs": true,
+    bracketSpacing: true,
+    jsxBracketSameLine: true,
+    semi: true
+}
