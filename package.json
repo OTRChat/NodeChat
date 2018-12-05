@@ -1,22 +1,17 @@
 {
-  "name": "nodechat",
+  "name": "node-chat",
   "version": "1.0.0",
+  "private": true,
   "description": "Group chat with SocketIO",
   "main": "index.js",
   "author": "Josh Ghent",
   "license": "MIT",
-  "dependencies": {
-    "express": "^4.10.2",
-    "push.js": "0.0.11",
-    "shortid": "2.2.6",
-    "socket.io": "^1.4.6"
-  },
   "scripts": {
-    "start:prod": "forever start index.js",
-    "start:dev": "gulp && node index.js",
-    "stop": "forever stop index.js",
-    "start": "node nodeChatServer/index.js",
-    "lint": "eslint ./nodeChatReact/src/*"
+    "lint": "eslint ./src/*"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
   },
   "repository": {
     "type": "git",
@@ -25,9 +20,15 @@
   "devDependencies": {
     "babel-eslint": "^10.0.1",
     "eslint": "^5.9.0",
-    "eslint-plugin-react": "^7.11.1",
-    "gulp": "^3.9.1",
-    "gulp-real-favicon": "^0.3.0",
-    "gulp-sass": "^2.3.2"
+    "eslint-plugin-react": "^7.11.1"
+  }
+  "dependencies": {
+    "push.js": "0.0.11",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2",
+    "react-scripts": "1.1.5",
+    "shortid": "2.2.6",
+    "socket.io": "^1.4.6",
+    "socket.io-client": "^2.1.1"
   }
 }
