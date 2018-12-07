@@ -7,7 +7,7 @@
   "author": "Josh Ghent",
   "license": "MIT",
   "scripts": {
-    "lint": "eslint ./src/*",
+    "lint": "prettier-eslint ./src/**/*.{js,jsx}",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
@@ -20,8 +20,8 @@
     "url": "git@github.com:joshghent/NodeChat.git"
   },
   "devDependencies": {
-    "babel-eslint": "^10.0.1",
     "eslint": "^5.9.0",
+    "eslint-config-airbnb": "^17.1.0",
     "eslint-config-prettier": "^3.3.0",
     "eslint-plugin-prettier": "^3.0.0",
     "eslint-plugin-react": "^7.11.1",
@@ -31,12 +31,12 @@
     "prettier-stylelint": "^0.4.2"
   },
   "dependencies": {
-    "push.js": "0.0.11",
+    "push.js": "1.0.9",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
-    "react-scripts": "1.1.5",
-    "shortid": "2.2.6",
-    "socket.io": "^1.4.6",
+    "react-scripts": "2.1.1",
+    "shortid": "2.2.14",
+    "socket.io": "^2.2.0",
     "socket.io-client": "^2.1.1"
   }
 }
